@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Opera, Autore, Evento, Notizia, Documento, FotoArchivio
+from .models import Opera, Autore, Evento, Notizia, Documento, FotoArchivio, Itinerario
 from django.db.models import Q
 from django.http import HttpResponse
 
