@@ -54,58 +54,17 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {% trans 'Luoghi & Percorsi' %}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="luoghiPercorsiDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="luoghiDropdown">
                         <li><a class="dropdown-item" href="{% url 'vizzini'%}">Vizzini</a></li>
                         <li><a class="dropdown-item" href="{% url 'mineo'%}">Mineo</a></li>
                         <li><a class="dropdown-item" href="{% url 'licodia' %}">Licodia Eubea</a></li>
                         <li><a class="dropdown-item" href="/#mappe">Mappe interattive</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/#verghiani">Itinerari Verghiani</a></li>
+                        <li><a class="dropdown-item" href="{% url 'itinerari_verghiani' %}">Itinerari Verghiani</a></li>
                         <li><a class="dropdown-item" href="/#capuaniani">Itinerari Capuaniani</a></li>
                         <li><a class="dropdown-item" href="/#tematici">Tematici</a></li>
                     </ul>
                 </li>
-
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="luoghiDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              {% trans 'Luoghi & Percorsi' %}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="luoghiPercorsiDropdown">
-              <li>
-                <a class="dropdown-item" href="{% url 'vizzini'%}">Vizzini</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'mineo'%}">Mineo</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'licodia' %}"
-                  >Licodia Eubea</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="/#mappe">Mappe interattive</a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item" href="{% url 'itinerari_verghiani' %}"
-                  >Itinerari Verghiani</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="/#capuaniani"
-                  >Itinerari Capuaniani</a
-                >
-              </li>
-              <li><a class="dropdown-item" href="/#tematici">Tematici</a></li>
-            </ul>
-          </li>
 
           <li class="nav-item dropdown">
             <a

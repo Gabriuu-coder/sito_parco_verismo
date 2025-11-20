@@ -205,3 +205,32 @@ def accrediti_finanziamenti_view(request):
     Pagina statica dedicata ad Accrediti e Finanziamenti.
     """
     return render(request, 'parco_verismo/accrediti_finanziamenti.html')
+
+
+def itinerari_verghiani_view(request):
+    """Lista degli itinerari di tipo 'verghiano'."""
+    itinerari = Itinerario.objects.filter(is_active=True, tipo='verghiano').order_by('ordine', 'translations__titolo')
+    context = {'itinerari': itinerari}
+    return render(request, 'parco_verismo/itinerari_verghiani.html', context)
+
+
+def itinerari_capuaniani_view(request):
+    """Lista degli itinerari di tipo 'capuaniano'. Reuses the itinerari template."""
+    itinerari = Itinerario.objects.filter(is_active=True, tipo='capuaniano').order_by('ordine', 'translations__titolo')
+    context = {'itinerari': itinerari}
+    return render(request, 'parco_verismo/itinerari_verghiani.html', context)
+
+
+def itinerari_tematici_view(request):
+    """Lista degli itinerari di tipo 'tematico'. Reuses the itinerari template."""
+    itinerari = Itinerario.objects.filter(is_active=True, tipo='tematico').order_by('ordine', 'translations__titolo')
+    context = {'itinerari': itinerari}
+    return render(request, 'parco_verismo/itinerari_verghiani.html', context)
+
+
+def itinerario_detail_view(request, slug):
+    """Dettaglio di un singolo itinerario."""
+    itinerario = get_object_or_404(Itinerario, slug=slug, is_active=True)
+    context = {'itinerario': itinerario}
+    # If you later create a dedicated detail template, change the template path here.
+    return render(request, 'parco_verismo/itinerario_detail.html', context)

@@ -251,9 +251,5 @@ class Itinerario(TranslatableModel):
         return self.safe_translation_getter('titolo', any_language=True) or str(self.pk)
 
     def get_absolute_url(self):
-        if self.tipo == 'verghiano':
-            return reverse('itinerari_verghiani')
-        elif self.tipo == 'capuaniano':
-            return reverse('itinerari_capuaniani')
-        else:
-            return reverse('itinerari_tematici')
+        """Return the detail URL for this itinerario."""
+        return reverse('itinerario_detail', kwargs={'slug': self.slug})

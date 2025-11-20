@@ -1,0 +1,15 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Itinerario{% endblock %}</title>
+</head>
+<body>
+  <h1>{{ itinerario.titolo }}</h1>
+  <p>{{ itinerario.descrizione }}</p>
+  {% if itinerario.link_strava %}
+    <p><a href="{{ itinerario.link_strava }}" target="_blank">Strava</a></p>
+  {% endif %}
+</body>
+</html>

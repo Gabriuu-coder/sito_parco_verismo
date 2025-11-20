@@ -48,4 +48,10 @@ urlpatterns = [
 
     # Accrediti e Finanziamenti
     path('finanziamenti/', views.accrediti_finanziamenti_view, name='accrediti_finanziamenti'),
+    
+    # Itinerari (liste e dettaglio)
+    path('itinerari/verghiani/', views.itinerari_verghiani_view, name='itinerari_verghiani'),
+    path('itinerari/capuaniani/', views.itinerari_capuaniani_view, name='itinerari_capuaniani'),
+    path('itinerari/tematici/', views.itinerari_tematici_view, name='itinerari_tematici'),
+    path('itinerario/<slug:slug>/', views.itinerario_detail_view, name='itinerario_detail'),
 ]
