@@ -251,37 +251,8 @@ section.page-section:nth-of-type(even) {
 }
 /* ============================================================================
    REGOLAMENTI_DOCUMENTI.CSS - Stili personalizzati per Regolamenti e Documenti
-   Utilizza il sistema di colori Malpelo da styles.css
+   Tutte le variabili colore sono ora in styles.css globale
    =========================================================================== */
-
-:root {
-    /* Colori Malpelo */
-    --color-primary: #823228;
-    --color-primary-dark: #4A140D;
-    --color-primary-light: #C76A52;
-    --color-primary-pale: #FAEEE7;
-    
-    --color-secondary: #C08C3B;
-    --color-secondary-dark: #8F6110;
-    --color-secondary-light: #F3C471;
-    
-    --color-accent: #2F6D5C;
-    
-    --color-background: #FFFBF7;
-    --color-surface: #FFFEFD;
-    --color-surface-elevated: #F7EDE4;
-    --color-text-primary: #2B1A13;
-    --color-text-secondary: #5B4034;
-    --color-border: #E7D9CA;
-    
-    /* Gradienti */
-    --gradient-primary: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-    --gradient-secondary: linear-gradient(120deg, var(--color-secondary-dark), var(--color-secondary));
-    
-    /* Ombre */
-    --shadow-md: 0 8px 24px rgba(43, 26, 19, 0.08);
-    --shadow-lg: 0 18px 45px rgba(43, 26, 19, 0.12);
-}
 
 /* PAGE SETUP */
 .page-regolamenti {

@@ -64,7 +64,7 @@
             document.addEventListener('DOMContentLoaded', function(){
                 const navbar = document.getElementById('mainNav');
                 const logo = navbar ? navbar.querySelector('.logo-header') : null;
-                const hero = document.querySelector('.mv-hero, .hp-hero, .hero, .hero-section, .cts-hero');
+                const hero = document.querySelector('.pages-hero, .hp-hero, .hero, .hero-section, .cts-hero');
 
                 // If we have a hero section, use IntersectionObserver to toggle navbar state
                 if(hero && navbar){
@@ -139,4 +139,5 @@
 </body>
 
 </html>
+
 

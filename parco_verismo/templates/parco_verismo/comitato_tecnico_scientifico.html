@@ -12,19 +12,19 @@
 {% block content %}
 
 <!-- Hero (copied structure from missione_visione) -->
-<section class="mv-hero">
-    <div class="mv-hero-overlay"></div>
+<section class="pages-hero">
+    <div class="pages-hero-overlay"></div>
     <div class="container-fluid h-100">
         <div class="row h-100 align-items-center">
-            <div class="col-lg-6 offset-lg-1 text-white z-index-10 py-5 py-lg-0">
-                <div class="mv-hero-content">
-                    <span class="mv-badge">{% trans 'Organi Direttivi' %}</span>
-                    <h1 class="mv-hero-title display-3 fw-bold mb-4">{% trans 'Comitato Tecnico-Scientifico' %}</h1>
-                    <p class="mv-hero-subtitle lead">{% trans 'Presidio culturale e scientifico del Parco Letterario del Verismo' %}</p>
+            <div class="col-lg-6 offset-lg-1 z-index-10 py-5 py-lg-0">
+                <div class="pages-hero-content">
+                    <span class="pages-badge">{% trans 'Organi Direttivi' %}</span>
+                    <h1 class="pages-hero-title display-3 fw-bold mb-4">{% trans 'Comitato Tecnico-Scientifico' %}</h1>
+                    <p class="pages-hero-subtitle lead">{% trans 'Presidio culturale e scientifico del Parco Letterario del Verismo' %}</p>
                 </div>
             </div>
             <div class="col-lg-5">
-                <div class="mv-hero-image">
+                <div class="pages-hero-image">
                     <div class="placeholder-image">
                         <svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrazione decorativa">
                             <defs>
@@ -71,11 +71,11 @@
 </section>
 
 <!-- Institution -->
-<section class="mv-section mv-institution">
+<section class="pages-section pages-institution">
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-lg-6">
-                <div class="mv-image-wrapper">
+                <div class="pages-image-wrapper">
                     <div class="placeholder-image-secondary">
                         <!-- preserved svg -->
                         <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrazione istituzionale">
@@ -103,19 +103,19 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="mv-content">
-                    <h2 class="mv-section-title"><span class="mv-title-accent">Istituzione e</span> Competenze</h2>
-                    <div class="mv-highlight-text mb-4">
+                <div class="pages-content">
+                    <h2 class="pages-section-title"><span class="pages-title-accent">Istituzione e</span> Competenze</h2>
+                    <div class="pages-highlight-text mb-4">
                         <p class="lead">{% trans "Il Comitato Tecnico-Scientifico è stato istituito con Determinazione Sindacale n. 50 del 20 ottobre 2025..." %}</p>
                     </div>
-                    <div class="mv-points">
+                    <div class="pages-points">
                         <h4 class="mb-3">{% trans 'Funzione del Comitato' %}</h4>
                         <p>{% trans "Il Comitato ha funzione consultiva e di orientamento strategico: supporta gli Enti locali e i partner culturali..." %}</p>
                     </div>
 
-                    <div class="mv-extra mt-4">
+                    <div class="pages-extra mt-4">
                         <h5 class="mb-2">{% trans 'Principali Compiti' %}</h5>
-                        <ul class="mv-list">
+                        <ul class="pages-list">
                             <li>{% trans 'Valutare e fornire pareri scientifici su progetti culturali, iniziative editoriali e mostre.' %}</li>
                             <li>{% trans 'Proporre linee guida per la tutela e la valorizzazione del patrimonio verghiano e capuaniano.' %}</li>
                             <li>{% trans 'Favorire collaborazioni con università, centri studi e istituti di ricerca.' %}</li>
@@ -133,7 +133,7 @@
 </section>
 
 <!-- Composition -->
-<section class="mv-section mv-composition">
+<section class="pages-section pages-composition">
     <div class="container">
         <div class="text-center mb-4">
             <h2 class="cts-section-title">{% trans 'Composizione del Comitato' %}</h2>
@@ -143,22 +143,22 @@
         <div class="row g-4">
             <!-- Group: Enti pubblici -->
             <div class="col-12">
-                <div class="mv-composition-group row align-items-start">
+                <div class="pages-composition-group row align-items-start">
                     <div class="col-lg-3 col-md-4">
                         <h3 class="cts-group-title">{% trans 'Rappresentanti Enti Pubblici' %}</h3>
                     </div>
                     <div class="col-lg-9 col-md-8">
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-building"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-building"></i></div>
                                     <h4>{% trans 'Dott. Pietro La Rocca' %}</h4>
                                     <p>{% trans 'Comune di Vizzini' %}</p>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-building"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-building"></i></div>
                                     <h4>{% trans 'Dott. Mario Luca Sebastiano Testa' %}</h4>
                                     <p>{% trans 'Comune di Mineo' %}</p>
                                 </div>
@@ -170,43 +170,43 @@
 
             <!-- Group: Centri studi e famiglie -->
             <div class="col-12">
-                <div class="mv-composition-group row align-items-start">
+                <div class="pages-composition-group row align-items-start">
                     <div class="col-lg-3 col-md-4">
                         <h3 class="cts-group-title">{% trans 'Centri Studi e Famiglie Depositarie del Patrimonio' %}</h3>
                     </div>
                     <div class="col-lg-9 col-md-8">
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-book-half"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-book-half"></i></div>
                                     <h4>{% trans 'Dott. Raffaele Assunta Brunelli' %}</h4>
                                     <p>{% trans 'Centro Studi C.E.S.T.A.' %}</p>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-people-fill"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-people-fill"></i></div>
                                     <h4>{% trans 'Dott. Tommaso Domenico Cilia' %}</h4>
                                     <p>{% trans 'Famiglia Capuana' %}</p>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-people-fill"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-people-fill"></i></div>
                                     <h4>{% trans 'Dott.ssa Carla Verga' %}</h4>
                                     <p>{% trans 'Famiglia Verga' %}</p>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-people-fill"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-people-fill"></i></div>
                                     <h4>{% trans 'Dott. Carlo Capuana' %}</h4>
                                     <p>{% trans 'Famiglia Capuana' %}</p>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-book-half"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-book-half"></i></div>
                                     <h4>{% trans 'Prof. Antonio Di Silvestro' %}</h4>
                                     <p>{% trans 'Fondazione Verga' %}</p>
                                 </div>
@@ -218,29 +218,29 @@
 
             <!-- Group: Istituti -->
             <div class="col-12">
-                <div class="mv-composition-group row align-items-start">
+                <div class="pages-composition-group row align-items-start">
                     <div class="col-lg-3 col-md-4">
                         <h3 class="cts-group-title">{% trans 'Istituti Superiori e Università' %}</h3>
                     </div>
                     <div class="col-lg-9 col-md-8">
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-mortarboard"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-mortarboard"></i></div>
                                     <h4>{% trans 'Dott.ssa Anna Raudino' %}</h4>
                                     <p>{% trans 'ITS Academy di Siracusa' %}</p>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-mortarboard"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-mortarboard"></i></div>
                                     <h4>{% trans 'Prof. Francesco Pignataro' %}</h4>
                                     <p>{% trans 'ITS Steve Jobs di Caltagirone' %}</p>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="mv-member-card">
-                                    <div class="mv-member-icon"><i class="bi bi-mortarboard"></i></div>
+                                <div class="pages-member-card">
+                                    <div class="pages-member-icon"><i class="bi bi-mortarboard"></i></div>
                                     <h4>{% trans 'Prof. Luigi Ingaliso' %}</h4>
                                     <p>{% trans "Università degli Studi di Catania" %}</p>
                                 </div>
@@ -252,15 +252,15 @@
 
             <!-- Group: Coordinamento -->
             <div class="col-12">
-                <div class="mv-composition-group row align-items-start">
+                <div class="pages-composition-group row align-items-start">
                     <div class="col-lg-3 col-md-4">
                         <h3 class="cts-group-title">{% trans 'Coordinamento' %}</h3>
                     </div>
                     <div class="col-lg-9 col-md-8">
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                             <div class="col">
-                                <div class="mv-member-card mv-member-card-highlight">
-                                    <div class="mv-member-icon"><i class="bi bi-star-fill"></i></div>
+                                <div class="pages-member-card pages-member-card-highlight">
+                                    <div class="pages-member-icon"><i class="bi bi-star-fill"></i></div>
                                     <h4>{% trans 'Dott.ssa Delia Francesca Di Pasquale' %}</h4>
                                     <p class="fw-bold">{% trans 'Coordinatrice del Comitato Tecnico-Scientifico' %}</p>
                                 </div>
@@ -275,11 +275,11 @@
 </section>
 
 <!-- Functions -->
-<section class="mv-section mv-functions">
+<section class="pages-section pages-functions">
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-lg-6 order-lg-2">
-                <div class="mv-image-wrapper">
+                <div class="pages-image-wrapper">
                     <div class="placeholder-image-secondary">
                         <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrazione funzionale">
                             <defs>
@@ -306,35 +306,35 @@
                 </div>
             </div>
             <div class="col-lg-6 order-lg-1">
-                <h2 class="mv-section-title"><span class="mv-title-accent">Finalità e</span> Funzioni</h2>
-                <div class="mv-functions-list">
-                    <div class="mv-function-item">
-    <div class="mv-function-icon"><i class="bi bi-check-circle-fill"></i></div>
-    <div class="mv-function-content">
+                <h2 class="pages-section-title"><span class="pages-title-accent">Finalità e</span> Funzioni</h2>
+                <div class="pages-functions-list">
+                    <div class="pages-function-item">
+    <div class="pages-function-icon"><i class="bi bi-check-circle-fill"></i></div>
+    <div class="pages-function-content">
         <h4>{% trans 'Coerenza Scientifica' %}</h4>
         <p>{% trans 'Garantire coerenza scientifica e culturale alle azioni del progetto' %}</p>
     </div>
 </div>
 
-<div class="mv-function-item">
-    <div class="mv-function-icon"><i class="bi bi-check-circle-fill"></i></div>
-    <div class="mv-function-content">
+<div class="pages-function-item">
+    <div class="pages-function-icon"><i class="bi bi-check-circle-fill"></i></div>
+    <div class="pages-function-content">
         <h4>{% trans 'Progettazione Strategica' %}</h4>
         <p>{% trans 'Orientare la progettazione di eventi, percorsi, accordi istituzionali e produzioni culturali' %}</p>
     </div>
 </div>
 
-<div class="mv-function-item">
-    <div class="mv-function-icon"><i class="bi bi-check-circle-fill"></i></div>
-    <div class="mv-function-content">
+<div class="pages-function-item">
+    <div class="pages-function-icon"><i class="bi bi-check-circle-fill"></i></div>
+    <div class="pages-function-content">
         <h4>{% trans 'Monitoraggio e Valutazione' %}</h4>
         <p>{% trans 'Valutare l\'impatto e il raggiungimento degli obiettivi culturali e sociali del Parco' %}</p>
     </div>
 </div>
 
-<div class="mv-function-item">
-    <div class="mv-function-icon"><i class="bi bi-check-circle-fill"></i></div>
-    <div class="mv-function-content">
+<div class="pages-function-item">
+    <div class="pages-function-icon"><i class="bi bi-check-circle-fill"></i></div>
+    <div class="pages-function-content">
         <h4>{% trans 'Coordinamento Istituzionale' %}</h4>
         <p>{% trans 'Favorire il dialogo tra enti locali, istituzioni regionali e partner culturali per la realizzazione condivisa del progetto' %}</p>
     </div>
@@ -346,14 +346,14 @@
 </section>
 
 <!-- CTA -->
-<section class="mv-section mv-cta">
+<section class="pages-section pages-cta">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 mx-auto">
-                <div class="mv-cta-card text-center">
+                <div class="pages-cta-card text-center">
                     <h2>{% trans 'Presidio Culturale e Scientifico' %}</h2>
                     <p class="lead mb-4">{% trans "Il Comitato rappresenta il presidio culturale e scientifico del progetto, assicurandone continuità e radicamento territoriale." %}</p>
-                    <div class="mv-cta-buttons">
+                    <div class="pages-cta-buttons">
                         <a href="{% url 'comitato_regolamento' %}" class="btn btn-primary btn-lg"><i class="bi bi-file-text"></i> {% trans 'Leggi il Regolamento' %}</a>
                     </div>
                 </div>
@@ -363,3 +363,5 @@
 </section>
 
 {% endblock %}
+
+

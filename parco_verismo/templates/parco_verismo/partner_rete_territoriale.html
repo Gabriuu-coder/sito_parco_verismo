@@ -12,19 +12,19 @@
 {% block content %}
 
 <!-- Hero (copied from Comitato structure) -->
-<section class="mv-hero">
-    <div class="mv-hero-overlay"></div>
+<section class="pages-hero">
+    <div class="pages-hero-overlay"></div>
     <div class="container-fluid h-100">
         <div class="row h-100 align-items-center">
-            <div class="col-lg-6 offset-lg-1 text-white z-index-10 py-5 py-lg-0">
-                <div class="mv-hero-content">
-                    <span class="mv-badge">{% trans 'Partner & Rete' %}</span>
-                    <h1 class="mv-hero-title display-3 fw-bold mb-4">{% trans 'Partner & Rete Territoriale' %}</h1>
-                    <p class="mv-hero-subtitle lead">{% trans 'Una rete integrata di eccellenza con istituzioni, amministrazioni locali e organizzazioni internazionali.' %}</p>
+            <div class="col-lg-6 offset-lg-1 z-index-10 py-5 py-lg-0">
+                <div class="pages-hero-content">
+                    <span class="pages-badge">{% trans 'Partner & Rete' %}</span>
+                    <h1 class="pages-hero-title display-3 fw-bold mb-4">{% trans 'Partner & Rete Territoriale' %}</h1>
+                    <p class="pages-hero-subtitle lead">{% trans 'Una rete integrata di eccellenza con istituzioni, amministrazioni locali e organizzazioni internazionali.' %}</p>
                 </div>
             </div>
             <div class="col-lg-5">
-                <div class="mv-hero-image">
+                <div class="pages-hero-image">
                     <div class="placeholder-image">
                         <svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrazione decorativa">
                             <defs>
@@ -61,12 +61,14 @@
     </div>
 </section>
 
-<!-- Sezione: Partner Istituzionali (restructured to match homepage layout) -->
-<section class="page-section py-6">
+<!-- Sezione: Partner Istituzionali -->
+<section class="page-section py-5 py-lg-6">
     <div class="container-xl">
-        <div class="text-center mb-5">
-            <h2 class="page-section-title">{% trans 'Partner Istituzionali' %}</h2>
-            <p class="lead text-secondary" style="max-width:900px; margin:0 auto;">
+        <div class="text-center mb-5 mb-lg-6">
+            <h2 class="page-section-title h2 fw-bold mb-3">
+                {% trans 'Partner Istituzionali' %}
+            </h2>
+            <p class="lead text-secondary" style="max-width: 600px; margin: 0 auto;">
                 {% trans 'Collaborazioni strategiche con enti pubblici e istituzioni per la promozione della cultura verista.' %}
             </p>
         </div>
@@ -147,12 +149,16 @@
     </div>
 </section>
 
-<!-- Sezione: Rete Territoriale (restructured to match homepage layout) -->
-<section class="page-section py-6">
+<!-- Sezione: Rete Territoriale -->
+<section class="page-section py-5 py-lg-6">
     <div class="container-xl">
-        <div class="text-center mb-5">
-            <h2 class="page-section-title"><span class="page-section-accent">{% trans 'Rete' %}</span> {% trans 'Territoriale' %}</h2>
-            <p class="lead text-secondary" style="max-width:900px; margin:0 auto;">{% trans 'Una maglia fitta di servizi e strutture distribuite nel territorio dei tre comuni.' %}</p>
+        <div class="text-center mb-5 mb-lg-6">
+            <h2 class="page-section-title h2 fw-bold mb-3">
+                <span class="page-section-accent">{% trans 'Rete' %}</span> {% trans 'Territoriale' %}
+            </h2>
+            <p class="lead text-secondary" style="max-width: 600px; margin: 0 auto;">
+                {% trans 'Una maglia fitta di servizi e strutture distribuite nel territorio dei tre comuni.' %}
+            </p>
         </div>
 
         <div class="row g-4">
@@ -219,12 +225,14 @@
     </div>
 </section>
 
-<!-- Sezione: Sponsor e Sostenitori (restructured to match homepage layout) -->
-<section class="page-section py-6">
+<!-- Sezione: Sponsor e Sostenitori -->
+<section class="page-section py-5 py-lg-6">
     <div class="container-xl">
-        <div class="text-center mb-5">
-            <h2 class="page-section-title">{% trans 'Sponsor e Sostenitori' %}</h2>
-            <p class="lead text-secondary" style="max-width:900px; margin:0 auto;">{% trans 'Imprese e organizzazioni che credono nella mission culturale del Parco Letterario.' %}</p>
+        <div class="text-center mb-5 mb-lg-6">
+            <h2 class="h2 fw-bold mb-3">{% trans 'Sponsor e Sostenitori' %}</h2>
+            <p class="lead text-secondary" style="max-width: 600px; margin: 0 auto;">
+                {% trans 'Imprese e organizzazioni che credono nella mission culturale del Parco Letterario.' %}
+            </p>
         </div>
 
         <div class="sponsor-logos mb-5">
@@ -241,18 +249,16 @@
     </div>
 </section>
 
-<!-- Sezione: CTA (restructured to match homepage layout) -->
-<section class="page-section py-6">
+<!-- Sezione: CTA -->
+<section class="page-section page-section-cta py-5 py-lg-6">
     <div class="container-xl">
         <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <div class="partner-cta-card text-center">
-                    <h2 class="h2 fw-bold mb-3">{% trans 'Unisciti alla Nostra Comunità' %}</h2>
-                    <p class="lead mb-5">{% trans 'Scopri le opportunità di collaborazione e di partecipazione ai progetti culturali del Parco Letterario del Verismo.' %}</p>
-                    <div class="d-flex gap-3 justify-content-center flex-wrap">
-                        <a href="mailto:info@parcoverismo.it" class="btn btn-primary btn-lg">{% trans 'Contattaci' %}</a>
-                        <a href="{% url 'comitato_tecnico_scientifico' %}" class="btn btn-outline-primary btn-lg">{% trans 'Scopri il Comitato' %}</a>
-                    </div>
+            <div class="col-lg-10 mx-auto text-center">
+                <h2 class="h2 fw-bold mb-3">{% trans 'Unisciti alla Nostra Comunità' %}</h2>
+                <p class="lead mb-4">{% trans 'Scopri le opportunità di collaborazione e di partecipazione ai progetti culturali del Parco Letterario del Verismo.' %}</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="mailto:info@parcoverismo.it" class="btn btn-primary btn-lg">{% trans 'Contattaci' %}</a>
+                    <a href="{% url 'comitato_tecnico_scientifico' %}" class="btn btn-outline-primary btn-lg">{% trans 'Scopri il Comitato' %}</a>
                 </div>
             </div>
         </div>
@@ -260,3 +266,5 @@
 </section>
 
 {% endblock %}
+
+

@@ -1,38 +1,8 @@
 @import url('index.css'); /* import variables and base rules from index */
 /* ========================================================
    MISSIONE E VISIONE - STILI PERSONALIZZATI
-   Palette Malpelo da styles.css
+   Tutte le variabili colore sono ora in styles.css globale
    ======================================================== */
-
-/* Import della palette colori principale */
-:root {
-    /* Colori Malpelo - da styles.css */
-    --mv-primary: #823228;
-    --mv-primary-dark: #4A140D;
-    --mv-primary-light: #C76A52;
-    --mv-primary-pale: #FAEEE7;
-    
-    --mv-secondary: #C08C3B;
-    --mv-secondary-dark: #8F6110;
-    --mv-secondary-light: #F3C471;
-    
-    --mv-accent: #2F6D5C;
-    
-    --mv-background: #FFFBF7;
-    --mv-surface: #FFFEFD;
-    --mv-surface-elevated: #F7EDE4;
-    --mv-text-primary: #2B1A13;
-    --mv-text-secondary: #5B4034;
-    --mv-border: #E7D9CA;
-    
-    /* Gradienti */
-    --mv-gradient-primary: linear-gradient(135deg, var(--mv-primary-dark) 0%, var(--mv-primary) 100%);
-    --mv-gradient-secondary: linear-gradient(120deg, var(--mv-secondary-dark), var(--mv-secondary));
-    
-    /* Ombre */
-    --mv-shadow-md: 0 8px 24px rgba(43, 26, 19, 0.08);
-    --mv-shadow-lg: 0 18px 45px rgba(43, 26, 19, 0.12);
-}
 
 /* ========================================================
    HERO SECTION
