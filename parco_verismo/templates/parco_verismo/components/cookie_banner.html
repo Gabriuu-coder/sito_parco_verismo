@@ -1,0 +1,78 @@
+{% load i18n %}
+
+<!-- Cookie Banner GDPR -->
+<div id="cookie-banner">
+    <div class="cookie-banner-content">
+        <div class="cookie-banner-text">
+            <h3>{% trans "Utilizzo dei Cookie" %}</h3>
+            <p>
+                {% trans "Questo sito utilizza cookie tecnici necessari e, previo consenso, cookie analytics per migliorare l'esperienza di navigazione." %}
+                <a href="{% url 'cookie_policy' %}">{% trans "Informativa completa" %}</a>
+            </p>
+        </div>
+        <div class="cookie-banner-buttons">
+            <button id="accept-all-cookies">{% trans "Accetta Tutti" %}</button>
+            <button id="accept-necessary-cookies">{% trans "Solo Necessari" %}</button>
+            <button id="customize-cookies">{% trans "Personalizza" %}</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Preferenze Cookie -->
+<div id="cookie-preferences-modal">
+    <div class="cookie-modal-content">
+        <button class="cookie-modal-close" aria-label="{% trans 'Chiudi' %}">&times;</button>
+        
+        <div class="cookie-modal-header">
+            <h2>{% trans "Gestione Preferenze Cookie" %}</h2>
+        </div>
+
+        <div class="cookie-categories">
+            <!-- Cookie Necessari -->
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3>{% trans "Cookie Tecnici Necessari" %}</h3>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" checked disabled>
+                        <span class="cookie-toggle-slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-category-description">
+                    {% trans "Questi cookie sono essenziali per il corretto funzionamento del sito. Includono cookie di sessione, autenticazione e sicurezza. Non possono essere disattivati." %}
+                </p>
+            </div>
+
+            <!-- Cookie Analytics -->
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3>{% trans "Cookie di Analisi" %}</h3>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="analytics-cookies">
+                        <span class="cookie-toggle-slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-category-description">
+                    {% trans "Questi cookie ci aiutano a capire come i visitatori interagiscono con il sito raccogliendo e segnalando informazioni in forma anonima. Utilizziamo queste informazioni per migliorare il sito." %}
+                </p>
+            </div>
+
+            <!-- Cookie Marketing (opzionale) -->
+            <div class="cookie-category">
+                <div class="cookie-category-header">
+                    <h3>{% trans "Cookie di Marketing" %}</h3>
+                    <label class="cookie-toggle">
+                        <input type="checkbox" id="marketing-cookies">
+                        <span class="cookie-toggle-slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-category-description">
+                    {% trans "Questi cookie vengono utilizzati per tracciare i visitatori attraverso i siti web. L'intento è mostrare annunci pertinenti e coinvolgenti per il singolo utente." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="cookie-modal-buttons">
+            <button id="save-preferences" class="save-preferences-btn">{% trans "Salva Preferenze" %}</button>
+        </div>
+    </div>
+</div>

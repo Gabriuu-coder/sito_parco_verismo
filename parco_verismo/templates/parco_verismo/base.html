@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cookie_banner.css' %}">
 
     {% block extra_head %}{% endblock %}
 </head>
@@ -37,9 +38,13 @@
     </main>
 
     {% include 'parco_verismo/components/footer.html' %}
+    {% include 'parco_verismo/components/cookie_banner.html' %}
 
     <!-- Bootstrap JS -->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Cookie Banner Script -->
+    <script src="{% static 'js/cookie_banner.js' %}"></script>
 
     <!-- Custom Scripts -->
     <script>

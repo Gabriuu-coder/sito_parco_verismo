@@ -1,0 +1,307 @@
+/* Cookie Banner GDPR - Parco Letterario del Verismo */
+/* Utilizza variabili CSS dal theme.css */
+
+#cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: color-mix(in srgb, var(--color-surface) 98%, transparent);
+    border-top: 3px solid var(--color-primary);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-xl);
+    z-index: var(--z-modal);
+    display: none;
+    animation: slideUp 0.4s ease-out;
+}
+
+#cookie-banner.show {
+    display: block;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cookie-banner-content {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+}
+
+.cookie-banner-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.cookie-banner-text h3 {
+    margin: 0 0 var(--space-2) 0;
+    font-size: var(--font-lg);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+.cookie-banner-text p {
+    margin: 0;
+    font-size: var(--font-sm);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-normal);
+}
+
+.cookie-banner-text a {
+    color: var(--color-link);
+    text-decoration: underline;
+}
+
+.cookie-banner-text a:hover {
+    color: var(--color-link-hover);
+}
+
+.cookie-banner-buttons {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.cookie-banner-buttons button {
+    padding: var(--space-3) var(--space-6);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+#accept-all-cookies {
+    background: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+#accept-all-cookies:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary);
+}
+
+#accept-necessary-cookies {
+    background: var(--color-gray-100);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+#accept-necessary-cookies:hover {
+    background: var(--color-gray-200);
+}
+
+#customize-cookies {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+#customize-cookies:hover {
+    background: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+/* Cookie preferences modal */
+#cookie-preferences-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--overlay-darker);
+    z-index: calc(var(--z-modal) + 10);
+    overflow-y: auto;
+    padding: var(--space-8);
+}
+
+#cookie-preferences-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cookie-modal-content {
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    max-width: 700px;
+    width: 100%;
+    padding: var(--space-8);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.cookie-modal-header {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.cookie-modal-header h2 {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: var(--font-2xl);
+}
+
+.cookie-modal-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background: none;
+    border: none;
+    font-size: var(--font-2xl);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    padding: var(--space-2);
+    line-height: 1;
+}
+
+.cookie-modal-close:hover {
+    color: var(--color-text-primary);
+}
+
+.cookie-category {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.cookie-category:last-child {
+    border-bottom: none;
+}
+
+.cookie-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.cookie-category-header h3 {
+    margin: 0;
+    font-size: var(--font-lg);
+    color: var(--color-text-primary);
+}
+
+.cookie-category-description {
+    color: var(--color-text-secondary);
+    font-size: var(--font-sm);
+    margin-bottom: var(--space-2);
+    line-height: var(--line-height-relaxed);
+}
+
+.cookie-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.cookie-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.cookie-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-gray-400);
+    transition: var(--transition-base);
+    border-radius: var(--radius-full);
+}
+
+.cookie-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--color-white);
+    transition: var(--transition-base);
+    border-radius: var(--radius-full);
+}
+
+.cookie-toggle input:checked + .cookie-toggle-slider {
+    background-color: var(--color-primary);
+}
+
+.cookie-toggle input:checked + .cookie-toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.cookie-toggle input:disabled + .cookie-toggle-slider {
+    background-color: var(--color-gray-600);
+    cursor: not-allowed;
+}
+
+.cookie-modal-buttons {
+    margin-top: var(--space-6);
+    display: flex;
+    gap: var(--space-4);
+    justify-content: flex-end;
+}
+
+.cookie-modal-buttons button {
+    padding: var(--space-3) var(--space-6);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.save-preferences-btn {
+    background: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+.save-preferences-btn:hover {
+    background: var(--color-primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cookie-banner-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .cookie-banner-buttons {
+        flex-direction: column;
+    }
+    
+    .cookie-banner-buttons button {
+        width: 100%;
+    }
+    
+    #cookie-preferences-modal {
+        padding: var(--space-4);
+    }
+    
+    .cookie-modal-content {
+        padding: var(--space-6);
+    }
+}
