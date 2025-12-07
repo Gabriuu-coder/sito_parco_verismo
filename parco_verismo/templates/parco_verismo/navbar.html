@@ -6,7 +6,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-dark-pages" id="mainNav">
 {% endif %}
     <div class="container">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="{% url 'home' %}">
         {% if request.path == '/' or is_homepage == '/it/' or is_homepage == '/en/' and request.path|length <= 4 %}
         <img
           src="{% static 'assets/img/logo-header-white.png' %}"
@@ -175,16 +175,14 @@
               <li>
                 <form action="{% url 'set_language' %}" method="post" class="m-0">
                   {% csrf_token %}
-                  {# Remove language prefix from path so Django redirects to correct language #}
-                  {% with clean_path=request.path %}
-                  {% if clean_path|slice:":4" == "/en/" %}
-                  <input type="hidden" name="next" value="{{ clean_path|slice:'3:' }}">
-                  {% elif clean_path|slice:":4" == "/it/" %}
-                  <input type="hidden" name="next" value="{{ clean_path|slice:'3:' }}">
+                  {% get_current_language as current_lang %}
+                  {% if current_lang == 'en' %}
+                  <input type="hidden" name="next" value="{{ request.path|slice:'3:' }}">
+                  {% elif current_lang == 'it' %}
+                  <input type="hidden" name="next" value="{{ request.path|slice:'3:' }}">
                   {% else %}
-                  <input type="hidden" name="next" value="{{ clean_path }}">
+                  <input type="hidden" name="next" value="{{ request.path }}">
                   {% endif %}
-                  {% endwith %}
                   <button type="submit" name="language" value="{{ language.code }}" 
                     class="dropdown-item d-flex align-items-center {% if language.code == LANGUAGE_CODE %}active{% endif %}">
                     {% if language.code == 'it' %}
