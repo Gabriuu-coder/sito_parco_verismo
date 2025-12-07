@@ -1,12 +1,13 @@
 {% load static i18n %}
-{% if request.path == '/' %}
+{% with is_homepage=request.path|slice:":4" %}
+{% if request.path == '/' or is_homepage == '/it/' or is_homepage == '/en/' and request.path|length <= 4 %}
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
 {% else %}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-dark-pages" id="mainNav">
 {% endif %}
     <div class="container">
       <a class="navbar-brand" href="/">
-        {% if request.path == '/' %}
+        {% if request.path == '/' or is_homepage == '/it/' or is_homepage == '/en/' and request.path|length <= 4 %}
         <img
           src="{% static 'assets/img/logo-header-white.png' %}"
           alt="{% trans 'Parco Letterario Verismo' %}"
@@ -160,34 +161,46 @@
             >
           </li>
 
-          <li class="nav-item ms-lg-3">
-            <form
-              action="{% url 'set_language' %}"
-              method="post"
-              class="language-switcher d-flex align-items-center"
-            >
-              {% csrf_token %}
-              <input type="hidden" name="next" value="{{ request.get_full_path|default:'/' }}">
-              {% get_current_language as LANGUAGE_CODE %}
+          <li class="nav-item dropdown ms-lg-3">
+            {% get_current_language as LANGUAGE_CODE %}
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="languageDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false" aria-label="{% trans 'Cambia lingua' %}">
+              <i class="bi bi-globe2 me-1"></i>
+              <span class="text-uppercase">{{ LANGUAGE_CODE }}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
               {% get_available_languages as LANGUAGES %}
               {% get_language_info_list for LANGUAGES as languages %}
               {% for language in languages %}
-              <button
-                type="submit"
-                name="language"
-                value="{{ language.code }}"
-                class="lang-toggle {% if language.code == LANGUAGE_CODE %}active{% endif %}"
-                aria-label="{% trans 'Cambia lingua' %} {{ language.name_local }}">
-                {{ language.code|upper }}
-              </button>
-              {% if not forloop.last %}
-              <span class="lang-separator">/</span>
-              {% endif %}
+              <li>
+                <form action="{% url 'set_language' %}" method="post" class="m-0">
+                  {% csrf_token %}
+                  {# Remove language prefix from path so Django redirects to correct language #}
+                  {% with clean_path=request.path %}
+                  {% if clean_path|slice:":4" == "/en/" %}
+                  <input type="hidden" name="next" value="{{ clean_path|slice:'3:' }}">
+                  {% elif clean_path|slice:":4" == "/it/" %}
+                  <input type="hidden" name="next" value="{{ clean_path|slice:'3:' }}">
+                  {% else %}
+                  <input type="hidden" name="next" value="{{ clean_path }}">
+                  {% endif %}
+                  {% endwith %}
+                  <button type="submit" name="language" value="{{ language.code }}" 
+                    class="dropdown-item d-flex align-items-center {% if language.code == LANGUAGE_CODE %}active{% endif %}">
+                    {% if language.code == 'it' %}
+                      <span class="me-2">🇮🇹</span>
+                    {% elif language.code == 'en' %}
+                      <span class="me-2">🇬🇧</span>
+                    {% endif %}
+                    {{ language.name_local|capfirst }}
+                  </button>
+                </form>
+              </li>
               {% endfor %}
-            </form>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
 </nav>
-
+{% endwith %}
