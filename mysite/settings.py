@@ -28,9 +28,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-t#1$mpnql9$he35yx=c@&x4=#kww(*vd36_b@-@n@wbh5_9b=b')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = True  # Forced True for development
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
+
+# Security Settings
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# HTTPS Settings (attivare in produzione)
+if not DEBUG:
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 
 # Application definition
@@ -87,6 +101,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# Cache Configuration (required for rate limiting middleware)
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'parco-verismo-cache',
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+        },
+        'TIMEOUT': 300,  # 5 minuti default
     }
 }
 
@@ -150,9 +176,17 @@ PARLER_DEFAULT_LANGUAGE_CODE = 'it'
 STATIC_URL = config('STATIC_URL', default='/static/')
 STATIC_ROOT = config('STATIC_ROOT', default=BASE_DIR / 'staticfiles')
 
-# Media files (User uploads)
+STATICFILES_DIRS = [
+    BASE_DIR / 'parco_verismo' / 'static',
+]
+
+# Media files (User uploads) - Organizzati per tipo
 MEDIA_URL = config('MEDIA_URL', default='/media/')
 MEDIA_ROOT = config('MEDIA_ROOT', default=BASE_DIR / 'media')
+
+# Configurazione upload files
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
