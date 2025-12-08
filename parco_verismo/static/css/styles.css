@@ -1391,6 +1391,8 @@ svg feDropShadow[flood-color="#4a140d"] {
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    margin-top: -80px; /* Compensa l'altezza della navbar fixed */
+    padding-top: 80px; /* Mantiene il contenuto visibile sotto la navbar */
 }
 
 .mv-hero-overlay,

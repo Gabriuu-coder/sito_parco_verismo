@@ -121,12 +121,27 @@
             document.addEventListener('DOMContentLoaded', function(){
                 const navbar = document.getElementById('mainNav');
                 const logo = navbar ? navbar.querySelector('.logo-header') : null;
-                const hero = document.querySelector('.pages-hero, .hp-hero, .hero, .hero-section, .cts-hero');
+                
+                if(!navbar) return;
 
-                // If we have a hero section, use IntersectionObserver to toggle navbar state
-                if(hero && navbar){
+                // Controlla se siamo in una pagina con navbar-dark-pages (tutte tranne homepage)
+                if(navbar.classList.contains('navbar-dark-pages')){
+                    // Pagine normali: navbar sempre solida con logo scuro
+                    navbar.classList.add('navbar-scrolled');
+                    navbar.classList.add('navbar-light');
+                    navbar.classList.remove('navbar-dark');
+                    setLogoDark(logo);
+                    return; // Non serve altro per queste pagine
+                }
+
+                // Solo per homepage: cerca hero e usa IntersectionObserver
+                const hero = document.querySelector('header, .pages-hero, .hp-hero, .hero-section, .cts-hero');
+                
+                if(hero){
                     // Start transparent
                     navbar.classList.remove('navbar-scrolled');
+                    navbar.classList.remove('navbar-light');
+                    navbar.classList.add('navbar-dark');
                     setLogoWhite(logo);
 
                     const observer = new IntersectionObserver((entries) => {
@@ -148,15 +163,6 @@
                     }, { root: null, threshold: 0, rootMargin: '-60px 0px 0px 0px' });
 
                     observer.observe(hero);
-                } else if(navbar){
-                    // No hero: default behavior
-                    if(navbar.classList.contains('navbar-dark-pages')){
-                        navbar.classList.add('navbar-scrolled');
-                        setLogoDark(logo);
-                    } else {
-                        navbar.classList.remove('navbar-scrolled');
-                        setLogoWhite(logo);
-                    }
                 }
 
                 // Backup: listen to scroll in case observer isn't supported
