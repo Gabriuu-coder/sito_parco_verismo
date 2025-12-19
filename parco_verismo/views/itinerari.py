@@ -45,8 +45,32 @@ def itinerari_verghiani_view(request):
 def itinerari_capuaniani_view(request):
     """Lista degli itinerari di tipo 'capuaniano'."""
     itinerari = Itinerario.objects.filter(is_active=True, tipo='capuaniano').order_by('ordine', 'translations__titolo')
-    context = {'itinerari': itinerari}
-    return render(request, 'parco_verismo/itinerari_verghiani.html', context)
+    
+    # Prepara i dati per il template con serializzazione corretta
+    itinerari_data = []
+    for itinerario in itinerari:
+        coordinate_tappe = itinerario.coordinate_tappe if itinerario.coordinate_tappe else []
+        # Serializza l'intero oggetto itinerario per evitare problemi di escaping
+        itinerario_json = json.dumps({
+            'slug': itinerario.slug,
+            'titolo': itinerario.titolo,
+            'descrizione_breve': ' '.join(itinerario.descrizione.split()[:15]) + '...' if itinerario.descrizione else '',
+            'colore': itinerario.colore_percorso or '#BF9B30',
+            'icona': itinerario.icona_percorso or '📚',
+            'durata': itinerario.durata_stimata or '',
+            'difficolta': itinerario.get_difficolta_display() if itinerario.difficolta else '',
+            'coordinate_tappe': coordinate_tappe
+        }, ensure_ascii=False)
+        itinerari_data.append({
+            'obj': itinerario,
+            'itinerario_json': itinerario_json
+        })
+    
+    context = {
+        'itinerari': itinerari,
+        'itinerari_data': itinerari_data
+    }
+    return render(request, 'parco_verismo/itinerari_capuaniani.html', context)
 
 
 def itinerari_tematici_view(request):

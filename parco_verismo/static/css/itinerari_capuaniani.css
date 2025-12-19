@@ -1,11 +1,11 @@
 /* ===========================
-   STILI PAGINA ITINERARI
+   STILI PAGINA ITINERARI CAPUANIANI
    =========================== */
 
-/* Hero Section Itinerari Verghiani - keep background image with green overlay */
-.hero-verghiani {
+/* Hero Section Itinerari Capuaniani - background image with golden overlay */
+.hero-capuaniani {
   position: relative;
-  /* show background image and keep green accent via overlay */
+  /* usa temporaneamente l'immagine dei verghiani con overlay oro */
   background: url("/static/assets/img/itinerari/bg-hero-verghiani.jpg") center center / cover no-repeat;
   height: 80vh;
   display: flex;
@@ -16,8 +16,8 @@
   overflow: hidden;
 }
 
-/* green translucent overlay so image remains visible */
-.hero-verghiani::before {
+/* golden translucent overlay */
+.hero-capuaniani::before {
   content: "";
   position: absolute;
   top: 0;
