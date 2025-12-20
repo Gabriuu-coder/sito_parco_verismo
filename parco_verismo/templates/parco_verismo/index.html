@@ -326,8 +326,8 @@
     </div>
 </section>
 
-<!-- Sezione: Contatto / Prenotazione Itinerario (split: form a sinistra, info a destra) -->
-<section id="prenota-itinerario" class="hp-section hp-cta-final py-6">
+<!-- Sezione: Contatto / Richiesta Itinerario (split: form a sinistra, info a destra) -->
+<section id="richiesta-itinerario" class="hp-section hp-cta-final py-6">
     <div class="container-xl">
         <div class="row">
             <div class="col-lg-10 mx-auto">
@@ -335,8 +335,8 @@
                     <div class="hp-contact-column d-flex justify-content-center">
                         <div class="hp-contact-card">
                             <div class="mb-3 d-flex flex-column align-items-center justify-content-center">
-                                <h2 class="h2 fw-bold mb-1">{% trans 'Prenota il tuo itinerario' %}</h2>
-                                <p class="text-secondary mb-0">{% trans "Compila i tuoi dati e scegli luogo e tipologia d'itinerario. Ti contatteremo al più presto." %}</p>
+                                <h2 class="h2 fw-bold mb-1">Modulo di contatto</h2>
+                                <p class="text-secondary mb-0">Per richieste di informazioni generali, proposte di collaborazione, attività didattiche, visite guidate, eventi o comunicazioni istituzionali, è possibile utilizzare il modulo di contatto sottostante. Il messaggio sarà indirizzato all'email ufficiale del Parco Letterario.</p>
                             </div>
 
                             {% if messages %}
@@ -350,75 +350,45 @@
 
                             <form class="hp-contact-form" method="post">
                                 {% csrf_token %}
+                                {% if form.non_field_errors %}
+                                    <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                                {% endif %}
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <label for="nome" class="form-label">
-                                            {% trans 'Nome e cognome' %} <span class="required">*</span>
-                                        </label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
-                                            id="nome" 
-                                            name="nome" 
-                                            placeholder="{% trans 'Inserisci nome e cognome' %}"
-                                            required
-                                            aria-required="true">
+                                        {{ form.nome.label_tag }} {% if form.nome.field.required %}<span class="required">*</span>{% endif %}
+                                        {{ form.nome }}
+                                        {% for err in form.nome.errors %}<div class="invalid-feedback d-block">{{ err }}</div>{% endfor %}
                                     </div>
-                                    
                                     <div class="col-md-6 form-group">
-                                        <label for="ente" class="form-label">
-                                            {% trans 'Ente / Istituzione' %} <span class="optional">({% trans 'facoltativo' %})</span>
-                                        </label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
-                                            id="ente" 
-                                            name="ente"
-                                            placeholder="{% trans 'Nome ente o istituzione' %}">
+                                        {{ form.cognome.label_tag }} {% if form.cognome.field.required %}<span class="required">*</span>{% endif %}
+                                        {{ form.cognome }}
+                                        {% for err in form.cognome.errors %}<div class="invalid-feedback d-block">{{ err }}</div>{% endfor %}
                                     </div>
-                                    
+
                                     <div class="col-md-6 form-group">
-                                        <label for="email" class="form-label">
-                                            {% trans 'Indirizzo email' %} <span class="required">*</span>
-                                        </label>
-                                        <input 
-                                            type="email" 
-                                            class="form-control" 
-                                            id="email" 
-                                            name="email"
-                                            placeholder="{% trans 'La tua email' %}"
-                                            required
-                                            aria-required="true">
+                                        {{ form.ente.label_tag }} <span class="optional">({% trans 'facoltativo' %})</span>
+                                        {{ form.ente }}
+                                        {% for err in form.ente.errors %}<div class="invalid-feedback d-block">{{ err }}</div>{% endfor %}
                                     </div>
-                                    
+
                                     <div class="col-md-6 form-group">
-                                        <label for="oggetto" class="form-label">
-                                            {% trans 'Oggetto' %} <span class="required">*</span>
-                                        </label>
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
-                                            id="oggetto" 
-                                            name="oggetto"
-                                            placeholder="{% trans 'Oggetto del messaggio' %}"
-                                            required
-                                            aria-required="true">
+                                        {{ form.email.label_tag }} {% if form.email.field.required %}<span class="required">*</span>{% endif %}
+                                        {{ form.email }}
+                                        {% for err in form.email.errors %}<div class="invalid-feedback d-block">{{ err }}</div>{% endfor %}
                                     </div>
-                                    
+
                                     <div class="col-12 form-group">
-                                        <label for="messaggio" class="form-label">
-                                            {% trans 'Messaggio' %} <span class="required">*</span>
-                                        </label>
-                                        <textarea 
-                                            class="form-control" 
-                                            id="messaggio" 
-                                            name="messaggio" 
-                                            rows="5"
-                                            placeholder="{% trans 'Scrivi qui il tuo messaggio...' %}"
-                                            required
-                                            aria-required="true"></textarea>
+                                        {{ form.oggetto.label_tag }} {% if form.oggetto.field.required %}<span class="required">*</span>{% endif %}
+                                        {{ form.oggetto }}
+                                        {% for err in form.oggetto.errors %}<div class="invalid-feedback d-block">{{ err }}</div>{% endfor %}
                                     </div>
-                                    
+
+                                    <div class="col-12 form-group">
+                                        {{ form.messaggio.label_tag }} {% if form.messaggio.field.required %}<span class="required">*</span>{% endif %}
+                                        {{ form.messaggio }}
+                                        {% for err in form.messaggio.errors %}<div class="invalid-feedback d-block">{{ err }}</div>{% endfor %}
+                                    </div>
+
                                     <div class="col-12 text-center mt-3">
                                         <button type="submit" class="btn btn-primary btn-lg">
                                             <i class="bi bi-send me-2"></i>

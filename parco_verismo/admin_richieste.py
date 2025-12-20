@@ -1,17 +1,100 @@
 """
-Admin per Prenotazioni.
+Admin personalizzato per la gestione delle Richieste.
 """
+
+# Standard library imports
+from datetime import timedelta
 
 # Django imports
 from django.contrib import admin
+from django.shortcuts import render
+from django.urls import path
 
 # Local imports
-from ..models import Richiesta
+from .models import Richiesta
 
 
-@admin.register(Richiesta)
-class RichiestaAdmin(admin.ModelAdmin):
-    """Admin di base per le richieste nel pannello principale."""
+class RichiesteAdminSite(admin.AdminSite):
+    """Admin site personalizzato per le richieste di contatto"""
+
+    site_header = "Gestione Richieste di contatto - Parco Verismo"
+    site_title = "Richieste di contatto"
+    index_title = "Dashboard Richieste di contatto"
+
+    def index(self, request, extra_context=None):
+        """Reindirizza automaticamente alla dashboard personalizzata"""
+        from django.shortcuts import redirect
+
+        return redirect("richieste_admin:richieste_dashboard")
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path(
+                "dashboard/",
+                self.admin_view(self.dashboard_view),
+                name="richieste_dashboard",
+            ),
+        ]
+        return custom_urls + urls
+
+    def dashboard_view(self, request):
+        """Vista dashboard semplificata per le richieste di contatto"""
+        from django.utils import timezone
+
+        oggi = timezone.now().date()
+        settimana_fa = oggi - timedelta(days=7)
+
+        # Statistiche essenziali
+        stats = {
+            "totali": Richiesta.objects.count(),
+            "nuove": Richiesta.objects.filter(stato="nuova").count(),
+            "in_lavorazione": Richiesta.objects.filter(
+                stato="in_lavorazione"
+            ).count(),
+            "confermate": Richiesta.objects.filter(stato="confermata").count(),
+            "completate": Richiesta.objects.filter(stato="completata").count(),
+            "cancellate": Richiesta.objects.filter(stato="cancellata").count(),
+            "priorita_alta": Richiesta.objects.filter(
+                stato__in=["nuova", "in_lavorazione"], priorita="alta"
+            ).count(),
+            "settimana": Richiesta.objects.filter(
+                data_richiesta__date__gte=settimana_fa
+            ).count(),
+        }
+
+        richieste_urgenti = Richiesta.objects.filter(
+            stato__in=["nuova", "in_lavorazione"], priorita="alta"
+        ).order_by("-data_richiesta")[:10]
+
+        # Ultime richieste attive
+        richieste_recenti = Richiesta.objects.filter(
+            stato__in=["nuova", "in_lavorazione", "confermata"]
+        ).order_by("-data_richiesta")[:15]
+
+        # Richieste cancellate
+        richieste_cancellate = Richiesta.objects.filter(stato="cancellata").order_by(
+            "-ultima_modifica"
+        )[:15]
+
+        context = {
+            "stats": stats,
+            "richieste_urgenti": richieste_urgenti,
+            "richieste_recenti": richieste_recenti,
+            "richieste_cancellate": richieste_cancellate,
+            "oggi": oggi,
+        }
+
+        return render(request, "admin/richieste_dashboard.html", context)
+
+
+# Istanza del custom admin site
+richieste_admin_site = RichiesteAdminSite(name="richieste_admin")
+
+
+@admin.register(Richiesta, site=richieste_admin_site)
+class RichiestaCustomAdmin(admin.ModelAdmin):
+    """Admin semplificato per le richieste"""
 
     list_display = (
         "badge_stato",
@@ -20,9 +103,10 @@ class RichiestaAdmin(admin.ModelAdmin):
         "oggetto",
         "email_link",
         "priorita",
+        "badge_ritardo",
+        "guida_assegnata",
         "data_richiesta",
         "data_completamento",
-        "responsabile",
     )
     list_filter = (
         "stato",
@@ -34,27 +118,27 @@ class RichiestaAdmin(admin.ModelAdmin):
         "cognome",
         "email",
         "messaggio",
+        "note_admin",
+        "guida_assegnata",
         "ente",
         "oggetto",
     )
     date_hierarchy = "data_richiesta"
     ordering = ("-priorita", "-data_richiesta")
     list_editable = ("priorita",)
-    readonly_fields = ("data_richiesta", "data_completamento", "ultima_modifica")
+    readonly_fields = ("data_richiesta", "data_completamento", "ultima_modifica", "giorni_attesa_display")
     actions = [
-        "marca_come_confermata",
-        "marca_come_completata",
+        "cambia_stato_in_lavorazione",
+        "cambia_stato_confermata",
+        "cambia_stato_completata",
         "imposta_priorita_alta",
         "esporta_csv",
     ]
 
     fieldsets = (
+        ("Informazioni contatto", {"fields": ("nome", "cognome", "email")}),
         (
-            "Informazioni contatto",
-            {"fields": ("nome", "cognome", "email", "ente", "oggetto")},
-        ),
-        (
-            "Dettagli richiesta",
+            "Dettagli",
             {
                 "fields": (
                     "messaggio",
@@ -62,7 +146,7 @@ class RichiestaAdmin(admin.ModelAdmin):
             },
         ),
         (
-            "Gestione amministrativa",
+            "Gestione",
             {
                 "fields": (
                     "stato",
@@ -73,27 +157,26 @@ class RichiestaAdmin(admin.ModelAdmin):
                     "data_richiesta",
                     "data_completamento",
                     "ultima_modifica",
+                    "giorni_attesa_display",
                 ),
-                "classes": ("collapse",),
             },
         ),
     )
-
-    def changelist_view(self, request, extra_context=None):
-        """Reindirizza alla dashboard personalizzata invece della lista standard."""
-        from django.shortcuts import redirect
-
-        return redirect("/richieste/")
+    list_per_page = 25
 
     def has_add_permission(self, request):
-        """Disabilita la creazione di richieste dall'admin - devono arrivare solo dal form pubblico."""
+        """Disabilita la creazione - devono arrivare solo dal form pubblico"""
         return False
 
-    @admin.display(description="Nome completo", ordering="nome")
+    def has_delete_permission(self, request, obj=None):
+        """Disabilita la cancellazione per mantenere lo storico"""
+        return False
+
+    @admin.display(description="Nome", ordering="nome")
     def nome_completo(self, obj):
         return f"{obj.nome} {obj.cognome}"
 
-    @admin.display(description="Email", ordering="email")
+    @admin.display(description="Email")
     def email_link(self, obj):
         from django.utils.html import format_html
 
@@ -117,6 +200,23 @@ class RichiestaAdmin(admin.ModelAdmin):
             'text-transform: uppercase;">{}</span>'
         )
         return format_html(html, color, obj.get_stato_display())
+
+    @admin.display(description="Avviso")
+    def badge_ritardo(self, obj):
+        from django.utils.html import format_html
+
+        if getattr(obj, "in_ritardo", False):
+            html = (
+                '<span style="background: #dc3545; color: white; padding: 3px 8px; '
+                'border-radius: 3px; font-weight: 600; font-size: 11px;">RITARDO</span>'
+            )
+            return format_html(html)
+        return ""
+
+    @admin.display(description="Tempo di gestione")
+    def giorni_attesa_display(self, obj):
+        giorni = getattr(obj, "giorni_attesa", 0)
+        return f"{giorni} giorni"
 
     @admin.action(description="Marca come confermata")
     def marca_come_confermata(self, request, queryset):

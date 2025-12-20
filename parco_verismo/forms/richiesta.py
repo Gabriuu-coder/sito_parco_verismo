@@ -1,5 +1,5 @@
 """
-Form per validazione Prenotazioni.
+Form per validazione Richieste.
 """
 
 # Standard library imports
@@ -14,7 +14,7 @@ from django.core.validators import EmailValidator
 from ..models import Richiesta
 
 
-class PrenotazioneForm(forms.ModelForm):
+class RichiestaForm(forms.ModelForm):
     """Form semplificato per il modulo di contatto pubblico"""
 
     class Meta:

@@ -1,5 +1,5 @@
 """
-Modelli per il sistema di Prenotazioni.
+Modelli per il sistema di Richieste.
 """
 
 # Django imports
@@ -7,19 +7,7 @@ from django.db import models
 
 
 class Richiesta(models.Model):
-    """Modello per salvare le prenotazioni dal form della homepage"""
-
-    LUOGO_CHOICES = [
-        ("vizzini", "Vizzini"),
-        ("mineo", "Mineo"),
-        ("licodia", "Licodia Eubea"),
-    ]
-
-    ITINERARIO_CHOICES = [
-        ("verghiani", "Itinerari verghiani"),
-        ("capuaniani", "Itinerari capuaniani"),
-        ("tematici", "Itinerari tematici"),
-    ]
+    """Modello per salvare le richieste dal form della homepage"""
 
     PRIORITA_CHOICES = [
         ("bassa", "Bassa"),
@@ -39,33 +27,8 @@ class Richiesta(models.Model):
     nome = models.CharField(max_length=100, verbose_name="Nome")
     cognome = models.CharField(max_length=100, verbose_name="Cognome")
     email = models.EmailField(verbose_name="Email")
-    telefono = models.CharField(
-        max_length=20,
-        blank=True,
-        verbose_name="Telefono",
-        help_text="Opzionale ma consigliato per contatto rapido",
-    )
 
-    # Dettagli richiesta
-    luogo = models.CharField(max_length=20, choices=LUOGO_CHOICES, verbose_name="Luogo")
-    itinerario = models.CharField(
-        max_length=20,
-        choices=ITINERARIO_CHOICES,
-        blank=True,
-        verbose_name="Tipologia itinerario",
-        help_text="Opzionale - sarà suggerito in base al luogo scelto",
-    )
-    data_preferita = models.DateField(
-        null=True,
-        blank=True,
-        verbose_name="Data preferita visita",
-        help_text="Opzionale",
-    )
-    numero_partecipanti = models.PositiveIntegerField(
-        default=1,
-        verbose_name="Numero partecipanti",
-        help_text="Numero persone che parteciperanno",
-    )
+    # Messaggio
     messaggio = models.TextField(
         blank=True,
         verbose_name="Messaggio/Richieste particolari",
@@ -73,22 +36,12 @@ class Richiesta(models.Model):
     )
 
     # Gestione amministrativa
-    data_richiesta = models.DateTimeField(
-        auto_now_add=True, verbose_name="Data richiesta"
-    )
+    data_richiesta = models.DateTimeField(auto_now_add=True, verbose_name="Data richiesta")
     stato = models.CharField(
-        max_length=20,
-        choices=STATO_CHOICES,
-        default="nuova",
-        verbose_name="Stato",
-        db_index=True,
+        max_length=20, choices=STATO_CHOICES, default="nuova", verbose_name="Stato", db_index=True
     )
     priorita = models.CharField(
-        max_length=10,
-        choices=PRIORITA_CHOICES,
-        default="media",
-        verbose_name="Priorità",
-        db_index=True,
+        max_length=10, choices=PRIORITA_CHOICES, default="media", verbose_name="Priorità", db_index=True
     )
 
     # Gestione date
@@ -131,9 +84,7 @@ class Richiesta(models.Model):
     )
 
     # Metadati
-    ultima_modifica = models.DateTimeField(
-        auto_now=True, verbose_name="Ultima modifica"
-    )
+    ultima_modifica = models.DateTimeField(auto_now=True, verbose_name="Ultima modifica")
 
     class Meta:
         ordering = ["-data_richiesta"]
@@ -149,7 +100,8 @@ class Richiesta(models.Model):
             "cancellata": "❌",
         }
         emoji = stato_emoji.get(self.stato, "📋")
-        return f"{emoji} {self.nome} {self.cognome} - {self.get_luogo_display()} ({self.numero_partecipanti}p)"
+        descr = self.oggetto if self.oggetto else "Richiesta"
+        return f"{emoji} {self.nome} {self.cognome} - {descr}"
 
     def save(self, *args, **kwargs):
         from django.utils import timezone
@@ -173,14 +125,8 @@ class Richiesta(models.Model):
 
     @property
     def in_ritardo(self):
-        """Verifica se la prenotazione è in ritardo"""
+        """Verifica se la richiesta è in ritardo (semplice heuristic)"""
         if self.stato in ["completata", "cancellata"]:
             return False
-        if self.data_preferita:
-            from django.utils import timezone
-
-            return (
-                self.data_preferita < timezone.now().date()
-                and self.stato != "confermata"
-            )
+        # Se non abbiamo una data preferita, non possiamo determinare ritardo
         return False

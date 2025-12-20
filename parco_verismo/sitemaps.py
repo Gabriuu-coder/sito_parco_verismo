@@ -8,34 +8,34 @@ from .models import Opera, Evento, Notizia, Documento, Itinerario, Autore
 
 class StaticViewSitemap(Sitemap):
     """Sitemap per le pagine statiche del sito"""
+
     priority = 0.8
-    changefreq = 'monthly'
+    changefreq = "monthly"
 
     def items(self):
         return [
-            'home',
-            'biblioteca',
-            'eventi',
-            'calendario',
-            'notizie',
-            'documenti',
-            'archivio_fotografico',
-            'itinerari_verghiani',
-            'itinerari_capuaniani',
-            'itinerari_tematici',
-            'missione_visione',
-            'comitato_tecnico_scientifico',
-            'comitato_regolamento',
-            'partner_rete_territoriale',
-            'accrediti_finanziamenti',
-            'regolamenti_documenti',
-            'vizzini',
-            'licodia',
-            'mineo',
-            'privacy_policy',
-            'cookie_policy',
-            'note_legali',
-
+            "home",
+            "biblioteca",
+            "eventi",
+            "calendario",
+            "notizie",
+            "documenti",
+            "archivio_fotografico",
+            "itinerari_verghiani",
+            "itinerari_capuaniani",
+            "itinerari_tematici",
+            "missione_visione",
+            "comitato_tecnico_scientifico",
+            "comitato_regolamento",
+            "partner_rete_territoriale",
+            "accrediti_finanziamenti",
+            "regolamenti_documenti",
+            "vizzini",
+            "licodia",
+            "mineo",
+            "privacy_policy",
+            "cookie_policy",
+            "note_legali",
         ]
 
     def location(self, item):
@@ -44,7 +44,8 @@ class StaticViewSitemap(Sitemap):
 
 class OperaSitemap(Sitemap):
     """Sitemap per le opere letterarie"""
-    changefreq = 'monthly'
+
+    changefreq = "monthly"
     priority = 0.7
 
     def items(self):
@@ -57,19 +58,21 @@ class OperaSitemap(Sitemap):
 
 class AutoreSitemap(Sitemap):
     """Sitemap per le pagine degli autori"""
-    changefreq = 'monthly'
+
+    changefreq = "monthly"
     priority = 0.7
 
     def items(self):
         return Autore.objects.all()
 
     def location(self, obj):
-        return reverse('opere_per_autore', kwargs={'autore_slug': obj.slug})
+        return reverse("opere_per_autore", kwargs={"autore_slug": obj.slug})
 
 
 class EventoSitemap(Sitemap):
     """Sitemap per gli eventi"""
-    changefreq = 'weekly'
+
+    changefreq = "weekly"
     priority = 0.9
 
     def items(self):
@@ -81,7 +84,8 @@ class EventoSitemap(Sitemap):
 
 class NotiziaSitemap(Sitemap):
     """Sitemap per le notizie"""
-    changefreq = 'daily'
+
+    changefreq = "daily"
     priority = 0.8
 
     def items(self):
@@ -93,7 +97,8 @@ class NotiziaSitemap(Sitemap):
 
 class DocumentoSitemap(Sitemap):
     """Sitemap per i documenti e studi"""
-    changefreq = 'monthly'
+
+    changefreq = "monthly"
     priority = 0.6
 
     def items(self):
@@ -105,7 +110,8 @@ class DocumentoSitemap(Sitemap):
 
 class ItinerarioSitemap(Sitemap):
     """Sitemap per gli itinerari"""
-    changefreq = 'monthly'
+
+    changefreq = "monthly"
     priority = 0.7
 
     def items(self):
