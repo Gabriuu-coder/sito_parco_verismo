@@ -25,14 +25,8 @@ const tasks = {
     );
   },
   fonts: () => {
-    copyDir(
-      path.join(ROOT, 'node_modules', '@fontsource', 'montserrat', 'files'),
-      path.join(STATIC_DIR, 'fonts', 'montserrat')
-    );
-    copyDir(
-      path.join(ROOT, 'node_modules', '@fontsource', 'inter', 'files'),
-      path.join(STATIC_DIR, 'fonts', 'inter')
-    );
+    // Fonts are committed directly into parco_verismo/static/fonts/
+    // No automatic copying from node_modules for Montserrat/Inter.
   },
   icons: () => {
     copyDir(
