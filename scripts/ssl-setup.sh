@@ -11,10 +11,10 @@
 set -e
 
 # ================================
-# CONFIGURAZIONE - MODIFICA QUESTI!
+# CONFIGURAZIONE
 # ================================
-DOMAIN="YOUR_DOMAIN.com"
-EMAIL="YOUR_EMAIL@example.com"
+DOMAIN="parcovergacapuana.it"
+EMAIL="giuseppet100@gmail.com"
 
 # ================================
 # COLORI
@@ -40,16 +40,16 @@ echo ""
 
 # Step 1: Verifica che Nginx sia in esecuzione
 echo -e "${YELLOW}[1/4] Verifico che i container siano attivi...${NC}"
-if ! docker-compose ps | grep -q "nginx.*Up"; then
+if ! docker compose ps | grep -q "nginx.*Up"; then
     echo -e "${RED}Nginx non è in esecuzione. Avvialo prima con:${NC}"
-    echo "docker-compose up -d nginx web"
+    echo "docker compose up -d nginx web"
     exit 1
 fi
 echo -e "${GREEN}✓ Container attivi${NC}"
 
 # Step 2: Ottieni certificato SSL
 echo -e "${YELLOW}[2/4] Richiedo certificato SSL a Let's Encrypt...${NC}"
-docker-compose run --rm certbot certonly \
+docker compose run --rm certbot certonly \
     --webroot \
     --webroot-path=/var/www/certbot \
     --email "$EMAIL" \
@@ -80,7 +80,7 @@ echo ""
 
 # Step 4: Riavvia Nginx
 echo -e "${YELLOW}[4/4] Riavvio Nginx...${NC}"
-docker-compose restart nginx
+docker compose restart nginx
 
 echo -e "${GREEN}========================================${NC}"
 echo -e "${GREEN}   SSL CONFIGURATO CON SUCCESSO!${NC}"
@@ -89,7 +89,7 @@ echo ""
 echo -e "Prossimi passi:"
 echo -e "1. ${YELLOW}Decommenta il blocco HTTPS${NC} in nginx/conf.d/default.conf"
 echo -e "2. ${YELLOW}Commenta la sezione HTTP location /${NC} (quella con proxy_pass)"
-echo -e "3. Riavvia: ${GREEN}docker-compose restart nginx${NC}"
+echo -e "3. Riavvia: ${GREEN}docker compose restart nginx${NC}"
 echo -e "4. Verifica: ${GREEN}curl -I https://$DOMAIN${NC}"
 echo ""
 echo -e "Il certificato si rinnoverà automaticamente ogni 12 ore (gestito da Certbot)."
