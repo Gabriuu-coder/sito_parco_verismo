@@ -11,10 +11,10 @@
 set -e
 
 # ================================
-# CONFIGURAZIONE - MODIFICA QUESTI!
+# CONFIGURAZIONE
 # ================================
-DOMAIN="YOUR_DOMAIN.com"
-EMAIL="YOUR_EMAIL@example.com"
+DOMAIN="parcovergacapuana.it"
+EMAIL="giuseppet100@gmail.com"
 
 # ================================
 # COLORI
