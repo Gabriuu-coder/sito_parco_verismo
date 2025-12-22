@@ -29,7 +29,7 @@ echo -e "${GREEN}   SSL Setup - Let's Encrypt${NC}"
 echo -e "${GREEN}========================================${NC}"
 
 # Verifica configurazione
-if [[ "$DOMAIN" == "YOUR_DOMAIN.com" ]]; then
+if [[ "$DOMAIN" == "parcovergacapuana.it" ]]; then
     echo -e "${RED}ERRORE: Modifica DOMAIN e EMAIL nello script!${NC}"
     exit 1
 fi
