@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script completo per popolare e gestire il database del Parco Letterario del Verismo.
+Script completo per popolare e gestire il database del Parco Letterario Giovanni Verga e Luigi Capuana.
 Include:
 - Popolamento database (autori, opere, eventi, notizie, archivio foto, itinerari)
 - Creazione superuser
@@ -695,7 +695,7 @@ decadente e simbolista.""",
         {
             "titolo": 'Presentazione del romanzo "I Malavoglia"',
             "slug": "presentazione-i-malavoglia",
-            "descrizione": """Il Parco Letterario del Verismo organizza una serata speciale dedicata al capolavoro
+            "descrizione": """Il Parco Letterario Giovanni Verga e Luigi Capuana organizza una serata speciale dedicata al capolavoro
 di Giovanni Verga. L'evento prevede una lettura guidata dei passi più significativi del romanzo,
 seguita da un dibattito con esperti letterari e studiosi del verismo siciliano.
 
@@ -717,7 +717,7 @@ L'evento si terrà nella suggestiva cornice di Aci Trezza, luogo natale del roma
             "titolo": "Visita guidata ai luoghi verghiani",
             "slug": "visita-guidata-luoghi-verghiani",
             "descrizione": """Scopri i luoghi che hanno ispirato le opere di Giovanni Verga in una visita guidata
-esclusiva organizzata dal Parco Letterario del Verismo.
+esclusiva organizzata dal Parco Letterario Giovanni Verga e Luigi Capuana.
 
 Il percorso toccherà:
 - La casa di Giovanni Verga a Vizzini
@@ -737,7 +737,7 @@ La visita è gratuita e dura circa 3 ore. Richiesta obbligatoria.""",
             "titolo": "Visita guidata alla casa di Luigi Capuana",
             "slug": "visita-casa-capuana",
             "descrizione": """Visita esclusiva alla casa natale di Luigi Capuana a Mineo, uno dei luoghi più 
-significativi del Parco Letterario del Verismo.
+significativi del Parco Letterario Giovanni Verga e Luigi Capuana.
 
 Durante la visita potrete:
 - Visitare le stanze dove visse Capuana
@@ -766,7 +766,7 @@ Il festival prevede:
 - Mostre fotografiche sui luoghi verghiani
 - Degustazioni di prodotti tipici siciliani
 
-L'evento si svolge nei comuni del Parco Letterario del Verismo.""",
+L'evento si svolge nei comuni del Parco Letterario Giovanni Verga e Luigi Capuana.""",
             "data_inizio": datetime(2026, 3, 15, 10, 00),
             "data_fine": datetime(2026, 3, 17, 22, 00),
             "luogo": "Vizzini, Mineo e Licodia Eubea",
@@ -842,9 +842,9 @@ L'evento è accreditato per la formazione docenti.""",
 
     notizie_data = [
         {
-            "titolo": "Il Parco Letterario del Verismo ottiene il riconoscimento UNESCO",
+            "titolo": "Il Parco Letterario Giovanni Verga e Luigi Capuana ottiene il riconoscimento UNESCO",
             "slug": "riconoscimento-unesco",
-            "contenuto": """Siamo orgogliosi di annunciare che il Parco Letterario del Verismo è stato ufficialmente
+            "contenuto": """Siamo orgogliosi di annunciare che il Parco Letterario Giovanni Verga e Luigi Capuana è stato ufficialmente
 riconosciuto come Patrimonio Culturale Immateriale dell'Umanità dall'UNESCO.
 
 Questo importante riconoscimento premia il lavoro svolto negli ultimi anni per la valorizzazione
@@ -855,7 +855,7 @@ del nostro patrimonio culturale, e ci impegna a continuare il nostro lavoro con 
 dedizione e professionalità.
 
 Ringraziamo tutti i partner, le istituzioni e i cittadini che hanno sostenuto questo progetto.""",
-            "riassunto": "Il Parco Letterario del Verismo ottiene il prestigioso riconoscimento UNESCO come Patrimonio Culturale Immateriale.",
+            "riassunto": "Il Parco Letterario Giovanni Verga e Luigi Capuana ottiene il prestigioso riconoscimento UNESCO come Patrimonio Culturale Immateriale.",
             "immagine_path": "vizzini/comune.jpg",
             "is_active": True,
         },
@@ -881,7 +881,7 @@ La pubblicazione è disponibile gratuitamente presso gli uffici del Parco e sul 
         {
             "titolo": "Progetto educativo: Il verismo a scuola",
             "slug": "progetto-educativo-verismo",
-            "contenuto": """Il Parco Letterario del Verismo ha avviato un nuovo progetto educativo rivolto
+            "contenuto": """Il Parco Letterario Giovanni Verga e Luigi Capuana ha avviato un nuovo progetto educativo rivolto
 agli studenti delle scuole superiori siciliane.
 
 Il progetto "Il verismo a scuola" prevede:
@@ -920,7 +920,7 @@ Il restauro è stato possibile grazie al contributo della Regione Siciliana e de
         {
             "titolo": "Settimana Santa a Licodia Eubea: tradizioni e letteratura",
             "slug": "settimana-santa-licodia",
-            "contenuto": """Il Parco Letterario del Verismo partecipa alle celebrazioni della Settimana Santa a Licodia Eubea,
+            "contenuto": """Il Parco Letterario Giovanni Verga e Luigi Capuana partecipa alle celebrazioni della Settimana Santa a Licodia Eubea,
 un evento che unisce tradizione religiosa e cultura letteraria.
 
 Durante la Settimana Santa si terranno:

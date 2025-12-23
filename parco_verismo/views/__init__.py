@@ -1,5 +1,5 @@
 """
-Views del Parco Letterario del Verismo.
+Views del Parco Letterario Giovanni Verga e Luigi Capuana.
 Organizzate per funzionalità e dominio.
 """
 

@@ -16,7 +16,7 @@ Set-Location $ScriptDir
 
 Write-Host ""
 Write-Host "=========================================" -ForegroundColor Cyan
-Write-Host "  PARCO LETTERARIO VERISMO - QUICK START" -ForegroundColor Cyan
+Write-Host "  PARCO LETTERARIO G. VERGA E L. CAPUANA - QUICK START" -ForegroundColor Cyan
 Write-Host "=========================================" -ForegroundColor Cyan
 Write-Host ""
 

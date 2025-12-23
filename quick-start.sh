@@ -23,7 +23,7 @@ NC='\033[0m'
 
 echo ""
 printf "${CYAN}╔═══════════════════════════════════════════════╗${NC}\n"
-printf "${CYAN}║  PARCO LETTERARIO VERISMO - QUICK START      ║${NC}\n"
+printf "${CYAN}║  PARCO LETTERARIO G. VERGA E L. CAPUANA - QUICK START      ║${NC}\n"
 printf "${CYAN}╚═══════════════════════════════════════════════╝${NC}\n"
 echo ""
 
